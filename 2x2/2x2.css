@@ -1,0 +1,29 @@
+
+.container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    height: 250px;
+    width: 250px;
+    background-color: rgb(177, 219, 243);
+    border-radius: 10px;
+}
+
+.item {
+    background-color: rgb(255, 192, 74);
+    width: 100px;
+    height: 100px;
+    align-self: center;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+body {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
