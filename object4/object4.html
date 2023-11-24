@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+
+<html lang="hu">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Heroes</title>
+
+  <style>
+    .hero-card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id = "heroesContainer"></div>
+  
+  <script>
+    let heroes = [
+      { firstName: "Ahsoka", lastName: "Tano", job: "padawan" },
+      { firstName: "Boba", lastName: "Fett", job: "fejvadász" },
+      { firstName: "Han", lastName: "Solo", job: "csempész" },
+      { firstName: "Leia", lastName: "Organa", job: "szenátor" }
+    ];
+
+    function renderHeroes() {
+      const container = document.getElementById("heroesContainer");
+      container.innerHTML = ""; 
+
+      heroes.forEach(hero => {
+        const card = `
+          <div class="hero-card">
+            <h2>${hero.firstName} ${hero.lastName}</h2>
+            <p>Job: ${hero.job}</p>
+          </div>
+        `;
+        container.innerHTML += card;
+      });
+    }
+
+    renderHeroes();
+
+    const newHeroes = [
+      { firstName: "Luke", lastName: "Skywalker", job: "jedi mester" },
+      { firstName: "Rey", lastName: "Palpatine", job: "jedi tanítvány" }
+    ];
+
+    heroes = heroes.concat(newHeroes);
+
+    renderHeroes();
+
+  </script>
+
+</body>
+
+</html>
