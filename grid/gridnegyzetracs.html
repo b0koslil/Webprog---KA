@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Négyzetrács</title>
+
+    <style>
+        
+        .negyzetracs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            width: 300px; 
+            height: 400px; 
+            gap: 10px;
+        }
+
+        .negyzetracs > div {
+            text-align: center;
+        }
+
+        .igen {
+           background-color:rgb(173, 215, 240); 
+        }
+
+        .nem {
+            background-color: black 0%;
+        }
+
+    </style>
+
+</head>
+
+<div class="negyzetracs">
+    <div class="nem"></div>
+    <div class="igen">1</div>
+    <div class="nem"></div>
+    <div class="igen">2</div>
+    <div class="igen">3</div>
+    <div class="igen">4</div>
+    <div class="igen">5</div>
+    <div class="igen">6</div>
+    <div class="igen">7</div>
+    <div class="nem"></div>
+    <div class="igen">8</div>
+    <div class="nem"></div>
+</div>
+  
+</html>
