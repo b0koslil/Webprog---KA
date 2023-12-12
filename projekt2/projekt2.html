@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+
+<html lang = "hu">
+
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+
+    <title>Memóriajáték</title>
+
+    <style>
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .memory-game {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; 
+            max-width: 600px;
+            max-height: 600px; 
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 100px; 
+            height: 100px; 
+            margin: 5px;
+            background-color: #fff;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .card.flip {
+            transform: rotateY(180deg);
+        }
+
+        @media screen and (max-width: 768px) {
+            .memory-game {
+                max-width: 400px;
+            }
+
+            .card {
+                width: calc(33.33% - 10px);
+                height: 80px;
+                font-size: 18px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="memory-game"> </div>
+
+    <script>
+
+        const cardsData = [
+            { id: 1, name: '', imageUrl: 'kartya1.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 2, name: '', imageUrl: 'kartya2.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 3, name: '', imageUrl: 'kartya3.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 4, name: '', imageUrl: 'kartya4.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 5, name: '', imageUrl: 'kartya5.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 6, name: '', imageUrl: 'kartya6.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 7, name: '', imageUrl: 'kartya7.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 8, name: '', imageUrl: 'kartya8.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 9, name: '', imageUrl: 'kartya9.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 1, name: '', imageUrl: 'kartya1.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 2, name: '', imageUrl: 'kartya2.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 3, name: '', imageUrl: 'kartya3.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 4, name: '', imageUrl: 'kartya4.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 5, name: '', imageUrl: 'kartya5.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 6, name: '', imageUrl: 'kartya6.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 7, name: '', imageUrl: 'kartya7.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 8, name: '', imageUrl: 'kartya8.jpg', backImageUrl: 'hatlap.jpg' },
+            { id: 9, name: '', imageUrl: 'kartya9.jpg', backImageUrl: 'hatlap.jpg' },
+        ];
+
+        let hasFlippedCard = false;
+        let lockBoard = false;
+        let firstCard, secondCard;
+
+        function createBoard() {
+            const gameBoard = document.querySelector('.memory-game');
+            cardsData.forEach(card => {
+                const div = document.createElement('div');
+                div.classList.add('card');
+                div.dataset.name = card.name;
+                div.dataset.imageUrl = card.imageUrl;
+                div.dataset.backImageUrl = card.backImageUrl;
+                div.dataset.id = card.id;
+                div.innerHTML = `
+                    <div class="front-face">
+                        <img src="${card.backImageUrl}" alt="${card.name}" style="width: 100%; height: 100%;">
+                    </div>`;
+                div.addEventListener('click', flipCard);
+                gameBoard.appendChild(div);
+            });
+        }
+
+        function flipCard() {
+            if (lockBoard) return;
+            if (this === firstCard) return;
+
+            this.classList.add('flip');
+
+            if (!hasFlippedCard) {
+                hasFlippedCard = true;
+                firstCard = this;
+                firstCard.querySelector('.front-face img').src = firstCard.dataset.imageUrl;
+                return;
+            }
+
+            secondCard = this;
+            secondCard.querySelector('.front-face img').src = secondCard.dataset.imageUrl;
+            checkForMatch();
+            }
+
+            function checkForMatch() {
+            let isMatch = firstCard.dataset.id === secondCard.dataset.id;
+
+            if (isMatch) {
+                setTimeout(disableCards, 1000); 
+            } else {
+                unflipCards();
+            }
+        }
+
+        function disableCards() {
+            firstCard.removeEventListener('click', flipCard);
+            secondCard.removeEventListener('click', flipCard);
+            firstCard.style.visibility = 'hidden';
+            secondCard.style.visibility = 'hidden';
+
+            if (document.querySelectorAll('.card.flip').length === cardsData.length) {
+                setTimeout(() => {
+                    location.reload(); 
+                }, 5000); 
+            }
+
+            resetBoard();
+        }
+
+        function unflipCards() {
+            lockBoard = true;
+            setTimeout(() => {
+                firstCard.classList.remove('flip');
+                secondCard.classList.remove('flip');
+                firstCard.querySelector('.front-face img').src = 'hatlap.jpg'; 
+                secondCard.querySelector('.front-face img').src = 'hatlap.jpg'; 
+                resetBoard();
+            }, 1000);
+        }
+
+        function resetBoard() {
+            [hasFlippedCard, lockBoard] = [false, false];
+            [firstCard, secondCard] = [null, null];
+        }
+
+        function resetGame() {
+            const gameBoard = document.querySelector('.memory-game');
+            gameBoard.innerHTML = '';
+            createBoard();
+        }
+
+        function shuffleCards() {
+            cardsData.sort(() => Math.random() - 0.5);
+        }
+
+        function initGame() {
+            shuffleCards();
+            createBoard();
+        }
+
+        let pairsFound = 0;
+        const totalPairs = cardsData.length / 2;
+
+        function checkForMatch() {
+            let isMatch = firstCard.dataset.id === secondCard.dataset.id;
+
+            if (isMatch) {
+                pairsFound++;
+                setTimeout(disableCards, 1000);
+            } else {
+                unflipCards();
+            }
+
+            if (pairsFound === totalPairs) {
+                setTimeout(() => {
+                    alert('Gratulálok, megtaláltad az összes párt');
+                    setTimeout(() => {
+                        location.reload(); 
+                    }, 5000);
+                }, 1000);
+            }
+        }
+
+        initGame();
+
+    </script>
+
+</body>
+
+</html>
