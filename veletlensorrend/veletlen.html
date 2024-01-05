@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Véletlen Sorrend</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        function legyenVeletlenSorrend(tomb) {
+            let ujTomb = [];
+
+            let index = Math.floor(Math.random() * 7); // 0 és 6 közötti szám
+            ujTomb.push(tomb[index]);
+            tomb.splice(index, 1);
+
+            index = Math.floor(Math.random() * 6); // 0 és 5 közötti szám
+            ujTomb.push(tomb[index]);
+            tomb.splice(index, 1);
+
+            index = Math.floor(Math.random() * 5); // 0 és 4 közötti szám
+            ujTomb.push(tomb[index]);
+            tomb.splice(index, 1);
+
+            index = Math.floor(Math.random() * 4); // 0 és 3 közötti szám
+            ujTomb.push(tomb[index]);
+            tomb.splice(index, 1);
+
+            index = Math.floor(Math.random() * 3); // 0 és 2 közötti szám
+            ujTomb.push(tomb[index]);
+            tomb.splice(index, 1);
+
+            index = Math.floor(Math.random() * 2); // 0 és 1 közötti szám
+            ujTomb.push(tomb[index]);
+            tomb.splice(index, 1);
+
+            ujTomb.push(tomb[0]);
+
+            return ujTomb;
+        }
+
+        const resultDiv = document.getElementById('result');
+        const resultArray = legyenVeletlenSorrend(["hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap"]);
+        resultDiv.innerText = resultArray.join(', '); 
+    </script>
+</body>
+</html>
