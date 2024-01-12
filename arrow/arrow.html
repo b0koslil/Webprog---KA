@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+
+<html lang = "hu">
+
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+    <title> Szöveg megfordítása </title>
+</head>
+
+<body>
+    
+    <label for = "textInput"> Szöveg: </label>
+    <input type = "text" id = "textInput"/>
+    <button onclick = "megfordit()"> Megfordít </button>
+
+    <div id = "result"> </div>
+
+    <script>
+        const megfordit = () => {
+            const szoveg = document.getElementById('textInput').value;
+            const megforditott = szoveg.split('').reverse().join('');
+            document.getElementById('result').innerText = megforditott;
+        };
+    </script>
+
+</body>
+
+</html>
