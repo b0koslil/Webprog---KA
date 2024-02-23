@@ -1,0 +1,25 @@
+
+1. Módosítsd a kódot, hogy a betöltés közben hiba keletkezzen!
+
+const imageUrl = `ahttps://via.assets.so/game.jpg?id=${id}`;
+
+
+2. Mi történik, ha a js fájl 34. sorában az id elől kiveszed a plusz jelet?
+
+az id értéke nem lesz automatikusan növelve 1-gyel
+
+
+3. Mi történik, ha a js fájl 34. sorában az +id + 1,  helyett egy másik számot írsz?
+
+a setAttribute függvény az adott elem data-id attribútumába az új számot fogja beállítani
+
+
+4. Mi történik, ha a js fájl 50. sorában a megadott szöveg helyett error-t írsz?
+
+a promise reject állapotba fog átmenni
+
+
+5. Próbáld ki, hogy a js fájl 14. sorában megadott szolgáltató másik végpontját használod!
+
+const imageUrl = `https://via.assets.so/movie.png?id=${id}`;
+
