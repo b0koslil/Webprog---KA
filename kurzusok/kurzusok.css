@@ -1,0 +1,107 @@
+body {
+    background-color: rgb(132, 181, 204);
+    padding: 10px;
+}
+
+h1{
+    color: white;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(42, 160, 207);
+    border: 1px;
+    text-align: center;
+    padding: 5px;
+}
+
+p{
+    font-weight: bolder;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 22px;
+}
+
+button {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    background-color: rgb(23, 72, 136);
+    padding: 15px;
+    margin: 5px 0;
+    border: 1px black solid;
+    color: white;
+    font-size: large;
+}
+
+li li{
+    background-color: rgb(42, 160, 207);
+    padding: 15px;
+    margin: 5px 0;
+    color: white;
+    font-size: medium;
+}
+
+li li:hover{
+    background-color: rgb(132, 181, 204);
+    padding: 15px;
+    margin: 5px 0;
+    color: white;
+    font-size: medium;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.cim{
+    background-color: rgb(23, 72, 136);
+    border: 1px black solid;
+    padding: 0px 100px;
+    margin:  10px 200px 50px 200px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+}
+
+.body{
+    flex: 30%;
+}
+
+.lista{
+    flex: 70%;
+}
+
+.fejlec {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.fejlecdiv {
+    margin-right: 20px;
+}
+
+#list {
+    list-style-type: none;
+}
+
+#betoltes {
+    color: white;
+    font-size: 20px;
+    margin-right: 20%;
+    display: none;
+}
