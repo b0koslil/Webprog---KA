@@ -8,7 +8,6 @@ async function handleSearch() {
     }
 
     const user = await User.create(inputFieldText);
-    loadedUsers.push(user);
 
     const usersDiv = document.getElementById("usersDiv");
     usersDiv.appendChild(user.generateDiv());
