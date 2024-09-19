@@ -1,5 +1,3 @@
-let loadedUsers = [];
-
 async function handleSearch() {
     const inputFieldDocument = document.getElementById("searchKey");
     const inputFieldText = inputFieldDocument.value;
