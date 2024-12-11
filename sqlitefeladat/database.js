@@ -1,21 +1,21 @@
-
 import sqlite3 from "sqlite3";
 
 const db = new sqlite3.Database("./database.sqlite");
 
 const initializeDB = async () => {
-    // await dbRun("DROP TABLE IF EXISTS users")
-    await dbRun("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT)");
+    await dbRun("DROP TABLE users")
+    await dbRun("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, class TEXT)");
 
-    // const users = [
-    //     { name: "John Doe", email: "john.doe@example.com" },
-    //     { name: "Jane Smith", email: "jane.smith@example.com" },
-    //     { name: "Sam Johnson", email: "sam.johnson@example.com" },
-    // ];
     
-    // for (const user of users) {
-    //     await dbRun("INSERT INTO users (name, email) VALUES (?, ?)", [user.name, user.email]);
-    // }
+    const users = [
+        { name: "John Doe", email: "john.doe@example.com", class : "a" },
+        { name: "Jane Smith", email: "jane.smith@example.com", class : "b" },
+        { name: "Sam Johnson", email: "sam.johnson@example.com", class : "c" },
+    ];
+
+    for (const user of users) {
+        await dbRun("INSERT INTO users (name, email, class) VALUES (?, ?, ?)", [user.name, user.email, user.class]);
+    }
 };
 
 function dbQuery(sql, params = []) {
@@ -36,4 +36,4 @@ function dbRun(sql, params = []) {
     });
 }
 
-export { db, dbQuery, dbRun, initializeDB };
+export { db, dbQuery, dbRun, initializeDB};
