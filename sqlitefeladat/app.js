@@ -3,8 +3,6 @@ import cors from "cors";
 import { initializeDB } from "./database.js";
 import usersRouter from "./routes/users.js";
 import swaggerUi from 'swagger-ui-express';
-// const swaggerDocument = await import("./swagger-output.json", { assert: { type: "json" } });
-import { readFile } from "fs/promises";
 const swaggerDocument = JSON.parse(await readFile(new URL("./swagger-output.json", import.meta.url)));
 
 const app = express();
